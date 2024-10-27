@@ -50,7 +50,7 @@ public class LocalProcessor {
             stringBuilder.append(stringList.get(i));
             stringBuilder.append(' ');
         }
-        processorName = processorName.toString();
+        processorName = stringBuilder.toString();
         return processorName;
     }
 
