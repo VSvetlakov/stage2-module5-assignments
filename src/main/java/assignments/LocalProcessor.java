@@ -46,17 +46,18 @@ public class LocalProcessor {
     @FullNameProcessorGeneratorAnnotation
     public String fullNameProcessorGenerator(List<String> stringList) {
         for (int i = 0; i < stringArrayList.size(); i++) {
-            processorName+=stringList.get(i)+' ';
+            processorName += stringList.get(i) + ' ';
         }
         return processorName;
     }
 
     @ReadFullProcessorNameAnnotation
     public void readFullProcessorName(File file) throws FileNotFoundException {
-            informationScanner = new Scanner(file);
-            while (informationScanner.hasNext()) {
-                processorVersion+= informationScanner.nextLine();
-            }
-
+        informationScanner = new Scanner(file);
+        StringBuilder stringBuilder = new StringBuilder();
+        while (informationScanner.hasNext()) {
+            stringBuilder.append(informationScanner.nextLine());
+        }
+        processorVersion = stringBuilder.toString();
     }
 }
