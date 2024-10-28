@@ -39,13 +39,13 @@ public class LocalProcessor {
     @ListIteratorAnnotation
     public void listIterator(List<String> stringList) {
         stringArrayList = new LinkedList<>(stringList);
-        for (int i = 0; i < period; i++) {
+        for (int i = 0; i < period || i < stringArrayList.size(); i++) {
             try {
                 System.out.println(stringArrayList.get(i).hashCode());
-            } catch (NullPointerException e) {
+            }
+            catch (NullPointerException e) {
                 System.out.println(e.getMessage());
             }
-
         }
     }
 
@@ -53,10 +53,15 @@ public class LocalProcessor {
     public String fullNameProcessorGenerator(List<String> stringList) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < stringArrayList.size(); i++) {
-            stringBuilder.append(stringList.get(i));
-            stringBuilder.append(' ');
+            try {
+                stringBuilder.append(stringList.get(i));
+                stringBuilder.append(" ");
+            }
+            catch (NullPointerException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        processorName = stringBuilder.toString();
+        processorName = stringBuilder.toString().trim();
         return processorName;
     }
 
